@@ -439,6 +439,13 @@ void responder_preguntas(List *lista_preguntas){
                     }
                     puntaje += n_res_correctas;
                     printf("Respuestas correctas: %d\n", n_res_correctas);
+                    list_popCurrent(lista_preguntas);
+                    if(lista_preguntas->current!=NULL){
+                        pregunta = lista_preguntas->current->data;
+                    }
+                    else{
+                        pregunta = NULL;
+                    }
                 }
                 else{
                     printf("Ingrese su respuesta: \n");
@@ -449,9 +456,25 @@ void responder_preguntas(List *lista_preguntas){
                     if(strcmp(pregunta->respuestas[0], respuesta) == 0){
                         printf("Respuesta correcta\n");
                         puntaje++;
+                        list_popCurrent(lista_preguntas);
+                        if(lista_preguntas->current != NULL){
+                            pregunta = lista_preguntas->current->data;
+                        }
+                        else{
+                            pregunta = NULL;
+                        }
                     }
                     else{
                         printf("Respuesta incorrecta\n");
+                        list_popCurrent(lista_preguntas);
+                        if(lista_preguntas->current != NULL){
+                            pregunta = lista_preguntas->current->data;
+                        }
+                        else{
+                            pregunta = NULL;
+                        }
+
+
                     }
                 }
                 break;
@@ -559,7 +582,7 @@ int main(void) {
     Map *mapa_hard = map_create();
     Map *mapa_medium = map_create();
     Map *mapa_easy = map_create();
-    int num_preguntas = 10;
+    int num_preguntas = 1;
 
     cargar_preguntas(mapa_preguntas, mapa_lista, mapa_hard, mapa_easy, mapa_medium);
 
@@ -597,7 +620,7 @@ int main(void) {
                     opcion_config = mostrar_menu_configuracion();
                     switch (opcion_config) {
                         case 1:
-                            configurar_cantidad_preguntas();
+                           num_preguntas = configurar_cantidad_preguntas();
                             break;
                         case 2:
                             printf("Volviendo al menú principal...\n");
