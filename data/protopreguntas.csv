@@ -1,0 +1,158 @@
+id,pregunta,respuesta,Dificultad,tipo
+45388251,quien es el jugador con mayor cantidad de goles en una temporada?,messi,easy,tipo respuesta
+45477263, dime los 5 maximos goleadores historicos de la premier?,alan shearer;harry kane;wayne rooney;andy cole;sergio aguero,hard,tipo lista
+id,pregunta,respuesta,Dificultad,tipo
+45388251,¿Quién es el jugador con mayor cantidad de goles en una temporada?,Messi,easy,tipo respuesta
+45477263,¿Dime los 5 máximos goleadores históricos de la Premier?,Alan Shearer;Harry Kane;Wayne Rooney;Andy Cole;Sergio Agüero,hard,tipo lista
+45388252,¿Quién ganó el Mundial de 2018?,Francia,easy,tipo respuesta
+45477264,¿Dime los 3 equipos con más títulos de la Champions League?,Real Madrid;AC Milan;Liverpool,medium,tipo lista
+45388253,¿Cuál es el estadio más grande del mundo?,Rungrado 1st of May Stadium,hard,tipo respuesta
+45477265,¿Nombra los equipos de Lionel Messi hasta 2023?,Barcelona;Paris Saint-Germain,medium,tipo lista
+45388254,¿Quién tiene el récord de más asistencias en una temporada de la Premier?,Kevin De Bruyne,easy,tipo respuesta
+45477266,¿Dime los 4 países que han ganado más Mundiales?,Brasil;Alemania;Italia;Argentina,medium,tipo lista
+45388255,¿Quién es el portero con más títulos en la historia?,Manuel Neuer,hard,tipo respuesta
+45477267,¿Nombra los últimos 5 ganadores del Balón de Oro?,Messi;Lewandowski;Modric;Ronaldo;Ronaldo,medium,tipo lista
+45388256,¿Quién es el entrenador con más títulos en la historia del fútbol?,Sir Alex Ferguson,easy,tipo respuesta
+45477268,¿Dime los 3 equipos con más títulos de liga en España?,Real Madrid;Barcelona;Atlético de Madrid,medium,tipo lista
+45388257,¿Cuál es el país con más participaciones en Copas del Mundo?,Brasil,easy,tipo respuesta
+45477269,¿Nombra los 5 máximos goleadores históricos de la Serie A?,Silvio Piola;Francesco Totti;Gunnar Nordahl;Giuseppe Meazza;Roberto Baggio,hard,tipo lista
+45388258,¿Quién es el máximo goleador histórico de la Champions League?,Cristiano Ronaldo,easy,tipo respuesta
+45477270,¿Dime los 3 clubes más exitosos de la Bundesliga?,Bayern Munich;Borussia Dortmund;Hamburgo,medium,tipo lista
+45388259,¿Qué jugador ha ganado más Copas del Mundo?,Pelé,easy,tipo respuesta
+45477271,¿Nombra las 4 ligas europeas más importantes?,Premier League;La Liga;Serie A;Bundesliga,medium,tipo lista
+45388260,¿Quién es el máximo goleador histórico de la selección argentina?,Lionel Messi,easy,tipo respuesta
+45477272,¿Dime los 5 países con más títulos de la Copa América?,Uruguay;Argentina;Brasil;Paraguay;Chile,medium,tipo lista
+45388261,¿Cuál fue el primer país en ganar la Copa del Mundo?,Uruguay,easy,tipo respuesta
+45477273,¿Nombra los 5 jugadores con más apariciones en la Premier League?,Gareth Barry;Ryan Giggs;Frank Lampard;James Milner;David James,medium,tipo lista
+45388262,¿Qué equipo ganó la primera Champions League?,Real Madrid,easy,tipo respuesta
+45477274,¿Dime los 3 máximos goleadores históricos del Barcelona?,Lionel Messi;César Rodríguez;Ladislao Kubala,medium,tipo lista
+45388263,¿Quién es el jugador más joven en ganar un Balón de Oro?,Ronaldo Nazário,easy,tipo respuesta
+45477275,¿Nombra los 4 equipos que nunca han descendido en la Premier League?,Arsenal;Manchester United;Tottenham Hotspur;Chelsea,medium,tipo lista
+45388264,¿Cuál es el club con más títulos de la Ligue 1?,Saint-Étienne,easy,tipo respuesta
+45477276,¿Dime los 3 máximos goleadores históricos del Real Madrid?,Cristiano Ronaldo;Raúl;Karim Benzema,medium,tipo lista
+45388265,¿Qué jugador tiene el récord de más goles en un solo Mundial?,Just Fontaine,easy,tipo respuesta
+45477277,¿Nombra los 5 jugadores con más títulos en la historia del fútbol?,Dani Alves;Ryan Giggs;Lionel Messi;Andrés Iniesta;Gerard Piqué,medium,tipo lista
+45388266,¿Quién es el jugador con más asistencias en la historia del fútbol?,Lionel Messi,easy,tipo respuesta
+45477278,¿Dime los 3 entrenadores con más títulos de Champions League?,Carlo Ancelotti;Bob Paisley;Zinedine Zidane,medium,tipo lista
+45388267,¿Qué selección ha ganado más Eurocopas?,Alemania,easy,tipo respuesta
+45477279,¿Nombra los 5 máximos goleadores históricos de la Ligue 1?,Delio Onnis;Bernard Lacombe;Hervé Revelli;Roger Courtois;Carlos Bianchi,hard,tipo lista
+45388268,¿Quién es el máximo goleador histórico del Manchester United?,Wayne Rooney,easy,tipo respuesta
+45477280,¿Dime los 3 equipos con más títulos de Copa del Rey?,Barcelona;Athletic Club;Real Madrid,medium,tipo lista
+45388269,¿Qué país ha sido anfitrión de más Mundiales?,México,easy,tipo respuesta
+45477281,¿Nombra los 5 jugadores con más apariciones en la historia de la Serie A?,Paolo Maldini;Gianluigi Buffon;Francesco Totti;Javier Zanetti;Gianluca Pagliuca,medium,tipo lista
+45388270,¿Quién es el entrenador con más títulos de liga en Inglaterra?,Sir Alex Ferguson,easy,tipo respuesta
+45477282,¿Dime los 4 clubes más exitosos de la Serie A?,Juventus;AC Milan;Inter de Milán;Roma,medium,tipo lista
+45388271,¿Qué selección ganó la Eurocopa 2016?,Portugal,easy,tipo respuesta
+45477283,¿Nombra los 5 máximos goleadores históricos de la Bundesliga?,Gerd Müller;Robert Lewandowski;Klaus Fischer;Jupp Heynckes;Manfred Burgsmüller,medium,tipo lista
+45388272,¿Quién es el máximo goleador histórico de la selección brasileña?,Pelé,easy,tipo respuesta
+45477284,¿Dime los 3 equipos con más títulos de liga en Italia?,Juventus;AC Milan;Inter de Milán,medium,tipo lista
+45388273,¿Qué jugador ha ganado más Copas de Europa?,Francisco Gento,easy,tipo respuesta
+45477285,¿Nombra los 5 máximos goleadores históricos de la La Liga?,Lionel Messi;Cristiano Ronaldo;Telmo Zarra;Karim Benzema;Raúl,medium,tipo lista
+45388274,¿Quién es el máximo goleador histórico de la Premier League?,Alan Shearer,easy,tipo respuesta
+45477286,¿Dime los 3 equipos con más títulos de liga en Alemania?,Bayern Munich;Borussia Dortmund;Borussia Mönchengladbach,medium,tipo lista
+45388275,¿Qué selección ha ganado más Copas América?,Uruguay,easy,tipo respuesta
+45477287,¿Nombra los 5 máximos goleadores históricos del Bayern Munich?,Gerd Müller;Robert Lewandowski;Karl-Heinz Rummenigge;Roland Wohlfarth;Thomas Müller,medium,tipo lista
+45388276,¿Quién es el máximo goleador histórico de la Serie A?,Silvio Piola,easy,tipo respuesta
+45477288,¿Dime los 3 equipos con más títulos de la Copa Libertadores?,Independiente;Boca Juniors;River Plate,medium,tipo lista
+45388277,¿Qué selección ganó la Copa América 2021?,Argentina,easy,tipo respuesta
+45477289,¿Nombra los 5 máximos goleadores históricos de la selección alemana?,Miroslav Klose;Gerd Müller;Joachim Streich;Lukas Podolski;Rudi Völler,medium,tipo lista
+45388278,¿Quién es el máximo goleador histórico de la Ligue 1?,Delio Onnis,easy,tipo respuesta
+45477290,¿Dime los 3 equipos con más títulos de la Eredivisie?,Ajax;PSV Eindhoven;Feyenoord,medium,tipo lista
+45388279,¿Qué selección ha ganado más títulos de la Copa Africana de Naciones?,Egipto,easy,tipo respuesta
+45477291,¿Nombra los 5 máximos goleadores históricos de la Copa del Mundo?,Miroslav Klose;Ronaldo;Gerd Müller;Just Fontaine;Pelé,medium,tipo lista
+45388280,¿Quién es el máximo goleador histórico de la selección inglesa?,Wayne Rooney,easy,tipo respuesta
+45477292,¿Dime los 3 equipos con más títulos de la Superliga de Turquía?,Galatasaray;Fenerbahçe;Beşiktaş,medium,tipo lista
+45388281,¿Qué selección ha ganado más títulos de la Copa de Oro de la CONCACAF?,México,easy,tipo respuesta
+45477293,¿Nombra los 5 máximos goleadores históricos de la Copa América?,Norberto Méndez;Zizinho;Severino Varela;Teodoro Fernández;Paolo Guerrero,medium,tipo lista
+45388282,¿Quién es el máximo goleador histórico de la selección española?,David Villa,easy,tipo respuesta
+45477294,¿Dime los 3 equipos con más títulos de la Liga MX?,Club América;Guadalajara;Toluca,medium,tipo lista
+45388283,¿Qué selección ganó la Copa Africana de Naciones 2019?,Argelia,easy,tipo respuesta
+45477295,¿Nombra los 5 máximos goleadores históricos de la Copa Africana de Naciones?,Samuel Eto'o;Laurent Pokou;Rashidi Yekini;Hossam Hassan;Didier Drogba,medium,tipo lista
+45388284,¿Quién es el máximo goleador histórico de la selección italiana?,Luigi Riva,easy,tipo respuesta
+45477296,¿Dime los 3 equipos con más títulos de la Primera División de Argentina?,River Plate;Boca Juniors;Independiente,medium,tipo lista
+45388285,¿Qué selección ganó la Copa Asiática 2019?,Catar,easy,tipo respuesta
+45477297,¿Nombra los 5 máximos goleadores históricos de la Copa Asiática?,Ali Daei;Lee Dong-gook;Mansour Muftah;Behtash Fariba;Naohiro Takahara,medium,tipo lista
+45388286,¿Quién es el máximo goleador histórico de la selección uruguaya?,Luis Suárez,easy,tipo respuesta
+45477298,¿Dime los 3 equipos con más títulos de la Major League Soccer?,LA Galaxy;D.C. United;Seattle Sounders,medium,tipo lista
+45388287,¿Qué selección ganó la Copa de Oro de la CONCACAF 2019?,México,easy,tipo respuesta
+45477299,¿Nombra los 5 máximos goleadores históricos de la Liga de Campeones de la CONCACAF?,Salvador Reyes;Carlos Hermosillo;Emilio Butragueño;José Cardozo;Javier Hernández,medium,tipo lista
+45388288,¿Quién es el máximo goleador histórico de la selección holandesa?,Robin van Persie,easy,tipo respuesta
+45477300,¿Dime los 3 equipos con más títulos de la Liga de Campeones de la AFC?,Al-Hilal;Pohang Steelers;Urawa Red Diamonds,medium,tipo lista
+45388289,¿Qué selección ganó la Copa Asiática 2007?,Irak,easy,tipo respuesta
+45477301,¿Nombra los 5 máximos goleadores históricos de la Superliga de China?,Elkeson;Wu Lei;Li Jinyu;Zheng Zhi;Gao Lin,medium,tipo lista
+45388290,¿Quién es el máximo goleador histórico de la selección mexicana?,Javier Hernández,easy,tipo respuesta
+45477302,¿Dime los 3 equipos con más títulos de la Liga de Campeones de la CAF?,Al Ahly;Zamalek;TP Mazembe,medium,tipo lista
+45388291,¿Qué selección ganó la Copa de Oro de la CONCACAF 2021?,Estados Unidos,easy,tipo respuesta
+45477303,¿Nombra los 5 máximos goleadores históricos de la Liga de Campeones de la OFC?,Ryan Thomas;Emile Damey;Benjamin Totori;Sanni Issa;Jean Kaltack,medium,tipo lista
+45388292,¿Quién es el máximo goleador histórico de la selección francesa?,Thierry Henry,easy,tipo respuesta
+45477304,¿Dime los 3 equipos con más títulos de la Liga de Campeones de la CONMEBOL?,Independiente;Boca Juniors;River Plate,medium,tipo lista
+45388293,¿Qué selección ganó la Copa Africana de Naciones 2021?,Senegal,easy,tipo respuesta
+45477305,¿Nombra los 5 máximos goleadores históricos de la selección brasileña?,Pelé;Neymar;Ronaldo;Romário;Zico,medium,tipo lista
+45388294,¿Quién es el máximo goleador histórico de la selección portuguesa?,Cristiano Ronaldo,easy,tipo respuesta
+45477306,¿Dime los 3 equipos con más títulos de la Liga de Campeones de la UEFA?,Real Madrid;AC Milan;Liverpool,medium,tipo lista
+45388295,¿Qué selección ganó la Copa Asiática 2011?,Japón,easy,tipo respuesta
+45477307,¿Nombra los 5 máximos goleadores históricos de la selección argentina?,Lionel Messi;Gabriel Batistuta;Sergio Agüero;Hernán Crespo;Diego Maradona,medium,tipo lista
+45388296,¿Quién es el máximo goleador histórico de la selección alemana?,Miroslav Klose,easy,tipo respuesta
+45477308,¿Dime los 3 equipos con más títulos de la Copa Libertadores?,Independiente;Boca Juniors;River Plate,medium,tipo lista
+45388297,¿Qué selección ganó la Copa de Oro de la CONCACAF 2017?,Estados Unidos,easy,tipo respuesta
+45477309,¿Nombra los 5 máximos goleadores históricos de la selección italiana?,Luigi Riva;Giuseppe Meazza;Silvio Piola;Roberto Baggio;Alessandro Del Piero,medium,tipo lista
+45388298,¿Quién es el máximo goleador histórico de la selección inglesa?,Wayne Rooney,easy,tipo respuesta
+45477310,¿Dime los 3 equipos con más títulos de la Copa Mundial de Clubes?,Real Madrid;Barcelona;Corinthians,medium,tipo lista
+45388255,¿Quién es el portero con más títulos en la historia?,Manuel Neuer,hard,tipo respuesta
+45388269,¿Qué país ha sido anfitrión de más Mundiales?,México,hard,tipo respuesta
+45388273,¿Qué jugador ha ganado más Copas de Europa?,Francisco Gento,hard,tipo respuesta
+45388279,¿Qué selección ha ganado más títulos de la Copa Africana de Naciones?,Egipto,hard,tipo respuesta
+45388285,¿Qué selección ganó la Copa Asiática 2019?,Catar,hard,tipo respuesta
+45388291,¿Qué selección ganó la Copa de Oro de la CONCACAF 2021?,Estados Unidos,hard,tipo respuesta
+45388293,¿Qué selección ganó la Copa Africana de Naciones 2021?,Senegal,hard,tipo respuesta
+45388295,¿Qué selección ganó la Copa Asiática 2011?,Japón,hard,tipo respuesta
+45388297,¿Qué selección ganó la Copa de Oro de la CONCACAF 2017?,Estados Unidos,hard,tipo respuesta
+45477263,¿Dime los 5 máximos goleadores históricos de la Premier?,Alan Shearer;Harry Kane;Wayne Rooney;Andy Cole;Sergio Agüero,hard,tipo lista
+45477269,¿Nombra los 5 máximos goleadores históricos de la Serie A?,Silvio Piola;Francesco Totti;Gunnar Nordahl;Giuseppe Meazza;Roberto Baggio,hard,tipo lista
+45477279,¿Nombra los 5 máximos goleadores históricos de la Ligue 1?,Delio Onnis;Bernard Lacombe;Hervé Revelli;Roger Courtois;Carlos Bianchi,hard,tipo lista
+45477289,¿Nombra los 5 máximos goleadores históricos de la selección alemana?,Miroslav Klose;Gerd Müller;Joachim Streich;Lukas Podolski;Rudi Völler,hard,tipo lista
+45477299,¿Nombra los 5 máximos goleadores históricos de la Liga de Campeones de la CONCACAF?,Salvador Reyes;Carlos Hermosillo;Emilio Butragueño;José Cardozo;Javier Hernández,hard,tipo lista
+45477301,¿Nombra los 5 máximos goleadores históricos de la Superliga de China?,Elkeson;Wu Lei;Li Jinyu;Zheng Zhi;Gao Lin,hard,tipo lista
+45477303,¿Nombra los 5 máximos goleadores históricos de la Liga de Campeones de la OFC?,Ryan Thomas;Emile Damey;Benjamin Totori;Sanni Issa;Jean Kaltack,hard,tipo lista
+45477305,¿Nombra los 5 máximos goleadores históricos de la selección brasileña?,Pelé;Neymar;Ronaldo;Romário;Zico,hard,tipo lista
+45477307,¿Nombra los 5 máximos goleadores históricos de la selección argentina?,Lionel Messi;Gabriel Batistuta;Sergio Agüero;Hernán Crespo;Diego Maradona,hard,tipo lista
+45477309,¿Nombra los 5 máximos goleadores históricos de la selección italiana?,Luigi Riva;Giuseppe Meazza;Silvio Piola;Roberto Baggio;Alessandro Del Piero,hard,tipo lista
+45477310,¿Dime los 3 equipos con más títulos de la Copa Mundial de Clubes?,Real Madrid;Barcelona;Corinthians,hard,tipo lista
+45388252,¿Quién ganó el Mundial de 2018?,Francia,medium,tipo respuesta
+45388264,¿Cuál es el club con más títulos de la Ligue 1?,Saint-Étienne,medium,tipo respuesta
+45388270,¿Quién es el entrenador con más títulos de liga en Inglaterra?,Sir Alex Ferguson,medium,tipo respuesta
+45388276,¿Quién es el máximo goleador histórico de la Serie A?,Silvio Piola,medium,tipo respuesta
+45388280,¿Quién es el máximo goleador histórico de la selección inglesa?,Wayne Rooney,medium,tipo respuesta
+45388282,¿Quién es el máximo goleador histórico de la selección española?,David Villa,medium,tipo respuesta
+45388284,¿Quién es el máximo goleador histórico de la selección italiana?,Luigi Riva,medium,tipo respuesta
+45388286,¿Quién es el máximo goleador histórico de la selección uruguaya?,Luis Suárez,medium,tipo respuesta
+45388288,¿Quién es el máximo goleador histórico de la selección holandesa?,Robin van Persie,medium,tipo respuesta
+45388292,¿Quién es el máximo goleador histórico de la selección francesa?,Thierry Henry,medium,tipo respuesta
+45388294,¿Quién es el máximo goleador histórico de la selección portuguesa?,Cristiano Ronaldo,medium,tipo respuesta
+45388296,¿Quién es el máximo goleador histórico de la selección alemana?,Miroslav Klose,medium,tipo respuesta
+45388298,¿Quién es el máximo goleador histórico de la selección inglesa?,Wayne Rooney,medium,tipo respuesta
+45477264,¿Dime los 3 equipos con más títulos de la Champions League?,Real Madrid;AC Milan;Liverpool,medium,tipo lista
+45477266,¿Dime los 4 países que han ganado más Mundiales?,Brasil;Alemania;Italia;Argentina,medium,tipo lista
+45477268,¿Dime los 3 equipos con más títulos de liga en España?,Real Madrid;Barcelona;Atlético de Madrid,medium,tipo lista
+45477270,¿Dime los 3 clubes más exitosos de la Bundesliga?,Bayern Munich;Borussia Dortmund;Hamburgo,medium,tipo lista
+45477272,¿Dime los 5 países con más títulos de la Copa América?,Uruguay;Argentina;Brasil;Paraguay;Chile,medium,tipo lista
+45477274,¿Dime los 3 máximos goleadores históricos del Barcelona?,Lionel Messi;César Rodríguez;Ladislao Kubala,medium,tipo lista
+45477276,¿Dime los 3 máximos goleadores históricos del Real Madrid?,Cristiano Ronaldo;Raúl;Karim Benzema,medium,tipo lista
+45477278,¿Dime los 3 entrenadores con más títulos de Champions League?,Carlo Ancelotti;Bob Paisley;Zinedine Zidane,medium,tipo lista
+45477280,¿Dime los 3 equipos con más títulos de Copa del Rey?,Barcelona;Athletic Club;Real Madrid,medium,tipo lista
+45477281,¿Nombra las 4 ligas europeas más importantes?,Premier League;La Liga;Serie A;Bundesliga,medium,tipo lista
+45477282,¿Dime los 4 clubes más exitosos de la Serie A?,Juventus;AC Milan;Inter de Milán;Roma,medium,tipo lista
+45477284,¿Dime los 3 equipos con más títulos de liga en Italia?,Juventus;AC Milan;Inter de Milán,medium,tipo lista
+45477286,¿Dime los 3 equipos con más títulos de liga en Alemania?,Bayern Munich;Borussia Dortmund;Borussia Mönchengladbach,medium,tipo lista
+45477288,¿Dime los 3 equipos con más títulos de la Copa Libertadores?,Independiente;Boca Juniors;River Plate,medium,tipo lista
+45477290,¿Dime los 3 equipos con más títulos de la Eredivisie?,Ajax;PSV Eindhoven;Feyenoord,medium,tipo lista
+45477292,¿Dime los 3 equipos con más títulos de la Superliga de Turquía?,Galatasaray;Fenerbahçe;Beşiktaş,medium,tipo lista
+45477294,¿Dime los 3 equipos con más títulos de la Primera División de Argentina?,River Plate;Boca Juniors;Independiente,medium,tipo lista
+45477296,¿Dime los 3 equipos con más títulos de la Liga MX?,Club América;Guadalajara;Toluca,medium,tipo lista
+45477298,¿Dime los 3 equipos con más títulos de la Major League Soccer?,LA Galaxy;D.C. United;Seattle Sounders,medium,tipo lista
+45477300,¿Dime los 3 equipos con más títulos de la Liga de Campeones de la AFC?,Al-Hilal;Pohang Steelers;Urawa Red Diamonds,medium,tipo lista
+45477302,¿Dime los 3 equipos con más títulos de la Liga de Campeones de la CAF?,Al Ahly;Zamalek;TP Mazembe,medium,tipo lista
+45477304,¿Dime los 3 equipos con más títulos de la Liga de Campeones de la CONMEBOL?,Independiente;Boca Juniors;River Plate,medium,tipo lista
+45477306,¿Dime los 3 equipos con más títulos de la Liga de Campeones de la UEFA?,Real Madrid;AC Milan;Liverpool,medium,tipo lista
+45477308,¿Dime los 3 equipos con más títulos de la Copa Libertadores?,Independiente;Boca Juniors;River Plate,medium,tipo lista
+45477310,¿Dime los 3 equipos con más títulos de la Copa Mundial de Clubes?,Real Madrid;Barcelona;Corinthians,medium,tipo lista
