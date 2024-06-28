@@ -50,7 +50,37 @@ char *strtrim(char *str) {
 int compare_int(const void *a, const void *b) {
     return (*(int *)a - *(int *)b);
 }
+void convertirCadenaAMayuscula(char* cadena) {
+    int i = 0;
+    while (cadena[i] != '\0') {
+        // Convertir letras sin acento a mayúsculas
+        cadena[i] = toupper(cadena[i]);
 
+        // Manejar letras con acento
+        /*switch (cadena[i]) {
+            case 'á': cadena[i] = 'Á'; break;
+            case 'é': cadena[i] = 'É'; break;
+            case 'í': cadena[i] = 'Í'; break;
+            case 'ó': cadena[i] = 'Ó'; break;
+            case 'ú': cadena[i] = 'Ú'; break;
+            case 'ñ': cadena[i] = 'Ñ'; break;
+            case 'ü': cadena[i] = 'Ü'; break;
+            // Si ya está en mayúscula, no hace falta cambiar
+            case 'Á':
+            case 'É':
+            case 'Í':
+            case 'Ó':
+            case 'Ú':
+            case 'Ñ':
+            case 'Ü':
+                break;
+            default:
+                cadena[i] = toupper(cadena[i]);
+        }*/
+
+        i++;
+    }
+}
 /**
  * Compara dos claves de tipo string para determinar si son iguales.
  * Esta función se utiliza para inicializar mapas con claves de tipo string.
@@ -181,6 +211,7 @@ void cargar_preguntas(Map *mapa_preguntas, Map *mapa_lista, Map *mapa_hard, Map 
             pregunta->respuestas = (char **)malloc(sizeof(char *) * 10);
 
             while (token != NULL) {
+                convertirCadenaAMayuscula(token);
                 pregunta->respuestas[pregunta->num_respuestas] = strdup(token);
                 pregunta->num_respuestas++;
                 token = strtok(NULL, ";");
@@ -190,6 +221,7 @@ void cargar_preguntas(Map *mapa_preguntas, Map *mapa_lista, Map *mapa_hard, Map 
         } else {
             pregunta->num_respuestas = 1;
             pregunta->respuestas = (char **)malloc(sizeof(char *));
+            convertirCadenaAMayuscula(campos[2]);
             pregunta->respuestas[0] = strdup(campos[2]);
         }
 
@@ -518,7 +550,9 @@ int responder_preguntas(List *lista_preguntas){
                     printf("Ingrese su respuesta: \n");
                     printf("%s,\n", ((Pregunta*)lista_preguntas->current->data)->tipo);
                     char respuesta[100];
+
                     fgets(respuesta, sizeof(respuesta), stdin);
+                    convertirCadenaAMayuscula(respuesta);
                     respuesta[strcspn(respuesta, "\n")] = '\0';
                     if(strcmp(pregunta->respuestas[0], respuesta) == 0){
                         printf("Respuesta correcta\n");
@@ -533,6 +567,7 @@ int responder_preguntas(List *lista_preguntas){
                     }
                     else{
                         printf("Respuesta incorrecta\n");
+                        printf("La respuesta correcta es: %s\n", pregunta->respuestas[0]);
                         list_popCurrent(lista_preguntas);
                         if(lista_preguntas->current != NULL){
                             pregunta = lista_preguntas->current->data;
@@ -705,7 +740,48 @@ void revisar_puntos(int dificultad, int puntaje, char nombre[100]){
             break;
     }
 }
+// Función que imprime el tutorial del programa
+void imprimirTutorial() {
+    printf("Bienvenido al Juego de Preguntas y Respuestas\n\n");
+    printf("Este programa te permite jugar a un juego de preguntas y respuestas con diferentes modos y opciones.\n");
+    printf("A continuación, te presentamos un tutorial sobre cómo utilizar el programa:\n\n");
 
+    printf("1. Menú Principal:\n");
+    printf("   Al ejecutar el programa, verás un menú con las siguientes opciones:\n");
+    printf("   1. Modo Individual: Juega solo respondiendo preguntas y registra tu puntaje.\n");
+    printf("   2. Modo Versus: Compite con otro jugador respondiendo preguntas alternadamente.\n");
+    printf("   3. Configuración: Configura la cantidad de preguntas a responder en cada partida.\n");
+    printf("   4. Tabla de Líderes: Muestra los puntajes más altos por cada dificultad.\n");
+    printf("   5. Ayuda: Proporciona instrucciones y contacto para soporte técnico.\n");
+    printf("   6. Salir: Cierra el programa.\n\n");
+
+    printf("2. Modo Individual:\n");
+    printf("   - Selecciona esta opción para jugar solo.\n");
+    printf("   - El programa te pedirá tu nombre y la dificultad deseada.\n");
+    printf("   - Responde las preguntas presentadas y acumula puntos.\n");
+    printf("   - Al finalizar, tu puntaje se registrará si está entre los más altos.\n\n");
+
+    printf("3. Modo Versus:\n");
+    printf("   - Selecciona esta opción para jugar contra otro jugador.\n");
+    printf("   - El programa pedirá los nombres de ambos jugadores y la dificultad deseada.\n");
+    printf("   - Los jugadores responderán preguntas alternadamente.\n");
+    printf("   - Al finalizar, se mostrará el puntaje de cada jugador y el ganador.\n\n");
+
+    printf("4. Configuración:\n");
+    printf("   - Selecciona esta opción para configurar la cantidad de preguntas a responder.\n");
+    printf("   - Elige la cantidad de preguntas deseadas y guarda la configuración.\n\n");
+
+    printf("5. Tabla de Líderes:\n");
+    printf("   - Selecciona esta opción para ver los puntajes más altos por cada dificultad.\n\n");
+
+    printf("6. Ayuda:\n");
+    printf("   - Selecciona esta opción para ver las instrucciones y detalles de contacto para soporte técnico.\n\n");
+
+    printf("7. Salir:\n");
+    printf("   - Selecciona esta opción para cerrar el programa.\n\n");
+
+    printf("Esperamos que disfrutes del juego. ¡Buena suerte!\n");
+}
 
 int main(void) {
     mostrar_titulo();
@@ -839,16 +915,41 @@ printf("\n################################################\n");
                 printf("#                                              #\n");
                 printf("################################################\n");
                 printf("#                                              #\n");
-                printf("#  1. instrucciones                            #\n");
-                printf("#  2. contacto servicio tecnico                #\n");
+                printf("#  1. Instrucciones                            #\n");
+                printf("#  2. Contacto Servicio Tecnico                #\n");
+                printf("#  3. Volver al Menú Principal \n");
                 printf("#                                              #\n");
                 printf("################################################\n");
-                break;
+                printf("Ingrese el número de la opción deseada:");
+                int opcion_ayuda;
+                scanf("%d", &opcion_ayuda);
+                while ((getchar()) != '\n');
+                switch (opcion_ayuda){
+                case 1:
+                    printf("Instrucciones:\n");
+                    printf("\n");
+                    imprimirTutorial();
+                    printf("\nprecione cualquier tecla para continuar\n");
+                    int opcion_instrucciones;
+                    scanf("%d", &opcion_instrucciones);
+                    while ((getchar()) != '\n');
+                    break;
+                case 2:
+                    printf("Contacto al servicio tecnico:\n");
+                    printf("\n");
+                    printf("Envianos un correo a : FutTest2024@gmail.com y te responderemos lo antes posible\n");
+                    printf("\n");
+                    printf("Para volver al Menú Principal Presiona Cualquier Número o Letra\n");
+                    int opcion_contacto;
+                    scanf("%d", &opcion_contacto);
+                    while ((getchar()) != '\n');
+                    break;
+                case 3:
+                    printf("Volviendo al menú principal...\n");    
+                }
+
             case 6:
                 printf("Saliendo...\n");
-            default:
-                printf("Opción no válida. Inténtalo de nuevo.\n");
-                break;
         }
     } while (opcion != 6);
 
