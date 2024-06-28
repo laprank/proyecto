@@ -7,6 +7,8 @@
 #include "tdas/map.h"
 #include "tdas/extra.h"
 #include <ctype.h>
+#define MAX_NAME_LEN 50
+#define TOP_SIZE 3
 
 
 typedef struct {
@@ -19,13 +21,11 @@ typedef struct {
 } Pregunta;
 typedef struct {
     char username[50];
-    char password[50];
     int top_score_easy;
     int top_score_medium;
     int top_score_hard;
     int top_score_lista;
-    int top_score_random;
-} UserProfile;
+} Jugador;
 // Función para eliminar espacios en blanco al principio y al final de una cadena
 char *strtrim(char *str) {
     char *end;
@@ -66,6 +66,87 @@ int is_equal_str(void *key1, void *key2) {
 int is_equal_int(void *key1, void *key2) {
     return *(int *)key1 == *(int *)key2;
 }
+void leerCSV(Jugador top3[TOP_SIZE], const char* filename, int dificultad) {
+    FILE *file = fopen(filename, "r");
+    if (!file) {
+        perror("Error al abrir el archivo");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < TOP_SIZE; i++) {
+        fscanf(file, "%[^,],", top3[i].username);
+        switch (dificultad) {
+            case 0: fscanf(file, "%d\n", &top3[i].top_score_easy); break;
+            case 1: fscanf(file, "%d\n", &top3[i].top_score_medium);printf("%d",top3[i].top_score_medium);break;
+            case 2: fscanf(file, "%d\n", &top3[i].top_score_hard); break;
+            case 3: fscanf(file, "%d\n", &top3[i].top_score_lista); break;
+        }
+    }
+
+    fclose(file);
+}
+
+void actualizarTop3(Jugador top3[], const char* username, int score, int dificultad) {
+    for (int i = 0; i < TOP_SIZE; i++) {
+        int current_score;
+        switch (dificultad) {
+            case 0: current_score = top3[i].top_score_easy; break;
+            case 1: current_score = top3[i].top_score_medium; break;
+            case 2: current_score = top3[i].top_score_hard; break;
+            case 3: current_score = top3[i].top_score_lista; break;
+        }
+        if (score > current_score) {
+            for (int j = TOP_SIZE - 1; j > i; j--) {
+                top3[j] = top3[j - 1];
+            }
+            strncpy(top3[i].username, username, MAX_NAME_LEN - 1);
+            top3[i].username[MAX_NAME_LEN - 1] = '\0';
+            switch (dificultad) {
+                case 0: top3[i].top_score_easy = score; break;
+                case 1: top3[i].top_score_medium = score; break;
+                case 2: top3[i].top_score_hard = score; break;
+                case 3: top3[i].top_score_lista = score; break;
+            }
+            break;
+        }
+    }
+}
+
+void guardarCSV(Jugador top3[], const char* filename, int dificultad) {
+    FILE *file = fopen(filename, "w");
+    if (!file) {
+        perror("Error al abrir el archivo para escribir");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < TOP_SIZE; i++) {
+        switch (dificultad) {
+            case 0: fprintf(file, "%s,%d\n", top3[i].username, top3[i].top_score_easy); break;
+            case 1: fprintf(file, "%s,%d\n", top3[i].username, top3[i].top_score_medium); break;
+            case 2: fprintf(file, "%s,%d\n", top3[i].username, top3[i].top_score_hard); break;
+            case 3: fprintf(file, "%s,%d\n", top3[i].username, top3[i].top_score_lista); break;
+        }
+    }
+
+    fclose(file);
+}
+
+void imprimirTop3(Jugador top3[], int dificultad) {
+    const char* dificultades[] = {"Fácil", "Media", "Difícil", "Lista"};
+    printf("Top 3 Jugadores - Dificultad %s:\n", dificultades[dificultad]);
+    for (int i = 0; i < TOP_SIZE; i++) {
+        int score;
+        switch (dificultad) {
+            case 0: score = top3[i].top_score_easy; break;
+            case 1: score = top3[i].top_score_medium; break;
+            case 2: score = top3[i].top_score_hard; break;
+            case 3: score = top3[i].top_score_lista; break;
+        }
+        printf("%d. %s - %d\n", i + 1, top3[i].username, score);
+    }
+    printf("\n");
+}
+
 
 
 void liberar_pregunta(Pregunta *pregunta) {
@@ -145,38 +226,18 @@ List *seleccionar_preguntas_azar(Map *mapa_preguntas, int num_preguntas) {
     // Inicializar el generador de números aleatorios
     srand(time(NULL));
 
-    // Crear un array temporal para almacenar los índices de las preguntas
-    int *indices = (int *)malloc(mapa_preguntas->size * sizeof(int));
-    for (int i = 0; i < mapa_preguntas->size; i++) {
-        indices[i] = i;
-    }
+    int preguntas_seleccionadas = 0;
+    while (preguntas_seleccionadas < num_preguntas) {
+        // Generar un índice aleatorio dentro del tamaño de la tabla hash
+        int indice = rand() % mapa_preguntas->capac;
 
-    // Barajar el array de índices
-    for (int i = mapa_preguntas->size - 1; i > 0; i--) {
-        int j = rand() % (i + 1);
-        int temp = indices[i];
-        indices[i] = indices[j];
-        indices[j] = temp;
-    }
-
-    // Seleccionar las primeras num_preguntas del array barajado
-    for (int i = 0; i < num_preguntas; i++) {
-        int index = indices[i];
-        // Buscar la pregunta en el mapa
-        for (int j = 0; j < mapa_preguntas->capac; j++) {
-            if (mapa_preguntas->hashArray[j] != NULL && mapa_preguntas->hashArray[j]->key != -1) {
-                if (index == 0) {
-                    // Insertar la pregunta seleccionada en la lista
-                    list_pushBack(lista_preguntas, mapa_preguntas->hashArray[j]->data);
-                    break;
-                }
-                index--;
-            }
+        // Verificar si hay una pregunta en esa posición
+        if (mapa_preguntas->hashArray[indice] != NULL && mapa_preguntas->hashArray[indice]->key != -1) {
+            // Insertar la pregunta en la lista de preguntas seleccionadas
+            list_pushBack(lista_preguntas, mapa_preguntas->hashArray[indice]->data);
+            preguntas_seleccionadas++;
         }
     }
-
-    // Liberar el array de índices
-    free(indices);
 
     return lista_preguntas;
 }
@@ -310,7 +371,7 @@ int mostrar_menu_un_jugador() {
     return opcion;
 }
 
-List* seleccinar_dificultad(Map *mapa_hard, Map *mapa_medium, Map *mapa_easy, Map *mapa_lista, Map *mapa_preguntas,int num_preguntas){
+int seleccinar_dificultad(){
     printf("\n################################################\n");
     printf("#                                              #\n");
     printf("#             SELECCIÓN DE DIFICULTAD          #\n");
@@ -328,6 +389,9 @@ List* seleccinar_dificultad(Map *mapa_hard, Map *mapa_medium, Map *mapa_easy, Ma
     printf("Ingrese el número de la opción deseada: ");
     scanf("%d", &opcion);
     while ((getchar()) != '\n');
+    return opcion;
+}
+List *generar_lista(Map *mapa_hard, Map *mapa_medium, Map *mapa_easy, Map *mapa_lista, Map *mapa_preguntas,int num_preguntas,int opcion){
     List *lista_preguntas = NULL;
     switch (opcion){
         case 1:
@@ -374,7 +438,7 @@ void imprimir_preguntas(List *lista) {
     }
     printf("Total preguntas seleccionadas: %d\n", contador - 1);
 }
-void responder_preguntas(List *lista_preguntas){
+int responder_preguntas(List *lista_preguntas){
     int puntaje = 0;
     int opcion;
     Pregunta *pregunta = list_first(lista_preguntas);
@@ -445,6 +509,9 @@ void responder_preguntas(List *lista_preguntas){
                     }
                     else{
                         pregunta = NULL;
+                        printf("Puntaje total: %d\n", puntaje);
+                        printf("precione enter para continuar");
+                        while ((getchar()) != '\n');
                     }
                 }
                 else{
@@ -483,11 +550,15 @@ void responder_preguntas(List *lista_preguntas){
                 break;
         }
     }
+    return puntaje;
 }
 void responder_preguntas_versus(List *lista_preguntas, char *nombre_jugador1, char *nombre_jugador2) {
+    int puntaje_jugador1 = 0;
+    int puntaje_jugador2 = 0;
     int opcion;
     Pregunta *pregunta = list_first(lista_preguntas);
     int turno = 1; // 1 para jugador 1, 2 para jugador 2
+
     while (pregunta != NULL) {
         if (turno == 1) {
             printf("%s, es tu turno.\n", nombre_jugador1);
@@ -495,29 +566,35 @@ void responder_preguntas_versus(List *lista_preguntas, char *nombre_jugador1, ch
             printf("%s, es tu turno.\n", nombre_jugador2);
         }
 
-        printf("Pregunta %s:\n", pregunta->pregunta);
+        printf("Pregunta: %s\n", pregunta->pregunta);
+
         if (lista_preguntas->current->prev == NULL) {
-            printf("2. siguiente\n");
-            printf("3. responder\n");
+            printf("2. Siguiente\n");
+            printf("3. Responder\n");
         } else if (lista_preguntas->current->next == NULL) {
-            printf("1. anterior\n");
-            printf("3. responder\n");
+            printf("1. Anterior\n");
+            printf("3. Responder\n");
         } else {
-            printf("1. anterior\n");
-            printf("2. siguiente\n");
-            printf("3. responder\n");
+            printf("1. Anterior\n");
+            printf("2. Siguiente\n");
+            printf("3. Responder\n");
         }
         printf("Ingrese su opción: ");
         scanf("%d", &opcion);
-        while ((getchar()) != '\n');
+        while ((getchar()) != '\n'); // Limpiar el buffer de entrada
+
         switch (opcion) {
             case 1:
-                lista_preguntas->current = lista_preguntas->current->prev;
-                pregunta = lista_preguntas->current->data;
+                if (lista_preguntas->current->prev != NULL) {
+                    lista_preguntas->current = lista_preguntas->current->prev;
+                    pregunta = lista_preguntas->current->data;
+                }
                 break;
             case 2:
-                lista_preguntas->current = lista_preguntas->current->next;
-                pregunta = lista_preguntas->current->data;
+                if (lista_preguntas->current->next != NULL) {
+                    lista_preguntas->current = lista_preguntas->current->next;
+                    pregunta = lista_preguntas->current->data;
+                }
                 break;
             case 3:
                 if (strcmp(pregunta->tipo, "tipo lista") == 0) {
@@ -532,15 +609,16 @@ void responder_preguntas_versus(List *lista_preguntas, char *nombre_jugador1, ch
                     char respuesta[100];
                     fgets(respuesta, sizeof(respuesta), stdin);
                     respuesta[strcspn(respuesta, "\n")] = '\0';
-                    char **respuestas = NULL;
+
+                    char *respuestas[pregunta->num_respuestas];
                     int num_respuestas = 0;
                     char *token = strtok(respuesta, ";");
                     while (token != NULL) {
-                        respuestas = (char **)realloc(respuestas, (num_respuestas + 1) * sizeof(char *));
                         respuestas[num_respuestas] = strdup(token);
                         num_respuestas++;
                         token = strtok(NULL, ";");
                     }
+
                     int n_res_valid = pregunta->num_respuestas;
                     int n_res_correctas = 0;
                     for (int i = 0; i < n_res_valid; i++) {
@@ -548,32 +626,86 @@ void responder_preguntas_versus(List *lista_preguntas, char *nombre_jugador1, ch
                             n_res_correctas++;
                         }
                     }
-                    printf("Respuestas correctas: %d\n", n_res_correctas);
-                    for (int i = 0; i < num_respuestas; i++) {
-                        free(respuestas[i]);
+                    if (turno == 1) {
+                        puntaje_jugador1 += n_res_correctas;
+                    } else {
+                        puntaje_jugador2 += n_res_correctas;
                     }
-                    free(respuestas);
+                    printf("Respuestas correctas: %d\n", n_res_correctas);
                 } else {
-                    printf("Ingrese su respuesta: \n");
-                    printf("%s,\n", pregunta->tipo);
+                    printf("Ingrese su respuesta: ");
                     char respuesta[100];
                     fgets(respuesta, sizeof(respuesta), stdin);
                     respuesta[strcspn(respuesta, "\n")] = '\0';
+
                     if (strcmp(pregunta->respuestas[0], respuesta) == 0) {
                         printf("Respuesta correcta\n");
+                        if (turno == 1) {
+                            puntaje_jugador1++;
+                        } else {
+                            puntaje_jugador2++;
+                        }
                     } else {
                         printf("Respuesta incorrecta\n");
                     }
                 }
+
+                list_popCurrent(lista_preguntas);
+                pregunta = lista_preguntas->current != NULL ? lista_preguntas->current->data : NULL;
                 break;
             default:
                 printf("Opción no válida. Inténtelo de nuevo.\n");
                 break;
         }
+
         // Cambiar turno
         turno = (turno == 1) ? 2 : 1;
     }
+
+    // Imprimir puntajes finales y felicitar al ganador
+    printf("Puntaje final:\n");
+    printf("%s: %d\n", nombre_jugador1, puntaje_jugador1);
+    printf("%s: %d\n", nombre_jugador2, puntaje_jugador2);
+
+    if (puntaje_jugador1 > puntaje_jugador2) {
+        printf("¡Felicidades %s, has ganado!\n", nombre_jugador1);
+    } else if (puntaje_jugador2 > puntaje_jugador1) {
+        printf("¡Felicidades %s, has ganado!\n", nombre_jugador2);
+    } else {
+        printf("¡Es un empate!\n");
+    }
+    printf("precione enter para continuar");
+    while ((getchar()) != '\n');
 }
+void revisar_puntos(int dificultad, int puntaje, char nombre[100]){
+    Jugador jugador[TOP_SIZE]={0,0,0};
+    switch(dificultad){
+        case 1:
+            leerCSV(jugador, "data/top3_easy.csv", dificultad-1);
+            actualizarTop3(jugador,nombre, puntaje,(dificultad-1));
+            guardarCSV(jugador,"data/top3_easy.csv",dificultad-1);
+            break;
+        case 2:
+            leerCSV(jugador, "data/top3_medium.csv", dificultad-1);
+            actualizarTop3(jugador,nombre, puntaje,(dificultad-1));
+            guardarCSV(jugador,"data/top3_medium.csv",dificultad-1);
+            break;
+        case 3:
+            leerCSV(jugador, "data/top3_hard.csv", dificultad-1);
+            actualizarTop3(jugador,nombre, puntaje,(dificultad-1));
+            guardarCSV(jugador,"data/top3_hard.csv",dificultad-1);
+            break;
+        case 4:
+            leerCSV(jugador, "data/top3_lista.csv", dificultad-1);
+            actualizarTop3(jugador,nombre, puntaje,(dificultad-1));
+            guardarCSV(jugador,"data/top3_lista.csv",dificultad-1);
+            break;
+        default:
+            printf("Dificultad no válida.\n");
+            break;
+    }
+}
+
 
 int main(void) {
     mostrar_titulo();
@@ -582,11 +714,11 @@ int main(void) {
     Map *mapa_hard = map_create();
     Map *mapa_medium = map_create();
     Map *mapa_easy = map_create();
-    int num_preguntas = 1;
+    int num_preguntas = 4;
+    int opcion = 0;
 
     cargar_preguntas(mapa_preguntas, mapa_lista, mapa_hard, mapa_easy, mapa_medium);
 
-    int opcion;
     do {
         opcion = mostrar_menu();
 
@@ -597,8 +729,13 @@ int main(void) {
                 fgets(nombre, sizeof(nombre), stdin);
                 nombre[strcspn(nombre, "\n")] = '\0';
                 printf("Bienvenido %s\n", nombre);
-                List *lista_preguntas = seleccinar_dificultad(mapa_hard, mapa_medium, mapa_easy, mapa_lista, mapa_preguntas, num_preguntas);
-                    responder_preguntas(lista_preguntas);
+                opcion = seleccinar_dificultad();
+                List *lista_preguntas = generar_lista(mapa_hard, mapa_medium, mapa_easy, mapa_lista, mapa_preguntas, num_preguntas, opcion);
+                int puntaje = responder_preguntas(lista_preguntas);
+                if(opcion<5){
+                    revisar_puntos(opcion, puntaje, nombre);
+                }
+
                 break;
             case 2:
                 printf("Modo Versus seleccionado.\n");
@@ -610,7 +747,8 @@ int main(void) {
                 printf("Ingrese el nombre del jugador 2: ");
                 fgets(nombre_jugador2, sizeof(nombre_jugador2), stdin);
                 nombre_jugador2[strcspn(nombre_jugador2, "\n")] = '\0';
-                List *lista_preguntas_versus = seleccinar_dificultad(mapa_hard, mapa_medium, mapa_easy, mapa_lista, mapa_preguntas, num_preguntas);
+                opcion = seleccinar_dificultad();
+                List *lista_preguntas_versus = generar_lista(mapa_hard, mapa_medium, mapa_easy, mapa_lista, mapa_preguntas, num_preguntas, opcion);
                 responder_preguntas_versus(lista_preguntas_versus, nombre_jugador1, nombre_jugador2);
                 break;
             case 3:
@@ -632,18 +770,67 @@ int main(void) {
                 } while (opcion_config != 2);
                 break;
             case 4:
-                printf("Top jugadores\n");
-                printf("\n################################################\n");
-                printf("#                                              #\n");
-                printf("#                   TOP MEDIO                  #\n");
-                printf("#                                              #\n");
-                printf("################################################\n");
-                printf("#                                              #\n");
-                printf("#  1. Judador 1                                #\n");
-                printf("#  2. Jugador 2                                #\n");
-                printf("#  3. Jugador 3                                #\n");
-                printf("#                                              #\n");
-                printf("################################################\n");
+                {
+
+printf("\n################################################\n");
+            printf("#                                              #\n");
+            printf("#             SELECCIÓN DE DIFICULTAD          #\n");
+            printf("#                                              #\n");
+            printf("################################################\n");
+            printf("#                                              #\n");
+            printf("#  0. Fácil                                    #\n");
+            printf("#  1. Medio                                    #\n");
+            printf("#  2. Difícil                                  #\n");
+            printf("#  3. Lista                                    #\n");
+            printf("#                                              #\n");
+            printf("################################################\n");
+            printf("Ingrese su opción: ");
+            int opcion_dificultad;
+            scanf("%d", &opcion_dificultad);
+            while ((getchar()) != '\n');
+            switch (opcion_dificultad){
+                case 0:
+                    {
+                        Jugador top3[TOP_SIZE];
+                        leerCSV(top3, "data/top3_easy.csv", 0);
+                        imprimirTop3(top3, 0);
+                        printf("precione cualquier tecla para continuar\n");
+                        getchar();
+                    }
+                    break;
+                case 1:
+                    {
+                        Jugador top3[TOP_SIZE];
+                        leerCSV(top3, "data/top3_medium.csv", 1);
+                        imprimirTop3(top3, 1);
+                        printf("precione cualquier tecla para continuar\n");
+                        getchar();
+                    }
+                    break;
+                case 2:
+                    {
+                        Jugador top3[TOP_SIZE];
+                        leerCSV(top3, "data/top3_hard.csv", 2);
+                        imprimirTop3(top3, 2);
+                        printf("precione cualquier tecla para continuar\n");
+                        getchar();
+                    }
+                    break;
+                case 3:
+                    {
+                        Jugador top3[TOP_SIZE];
+                        leerCSV(top3, "data/top3_lista.csv", 3);
+                        imprimirTop3(top3, 3);
+                        printf("precone cualquier tecla para continuar\n");
+                        getchar();
+                    }
+                    break;
+                default:
+                    printf("Opción no válida. Inténtalo de nuevo.\n");
+                    break;
+                }
+            }
+            break;
             case 5:
                 printf("has seleccionado ayuda\n");
                 printf("\n################################################\n");
@@ -663,7 +850,7 @@ int main(void) {
                 printf("Opción no válida. Inténtalo de nuevo.\n");
                 break;
         }
-    } while (opcion != 4);
+    } while (opcion != 6);
 
     return 0;
 }
